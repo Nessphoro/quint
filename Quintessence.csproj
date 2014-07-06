@@ -1,0 +1,295 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{C28BEF28-7C06-4AB0-80AB-07541E1947F2}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Quintessence</RootNamespace>
+    <AssemblyName>Quintessence</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="AddContact.xaml.cs">
+      <DependentUpon>AddContact.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Converters.cs" />
+    <Compile Include="Logic\AddContactsModel.cs" />
+    <Compile Include="Logic\ContactsModel.cs" />
+    <Compile Include="Logic\Contact.cs" />
+    <Page Include="AddContact.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Logic\SharedFile.cs" />
+    <Compile Include="MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <AppDesigner Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\group_add.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\search.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\plus_32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\folder.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\file.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Icons\7z_icon.png" />
+    <Resource Include="Resources\Icons\ace_icon.png" />
+    <Resource Include="Resources\Icons\aicf_icon.png" />
+    <Resource Include="Resources\Icons\aiff_icon.png" />
+    <Resource Include="Resources\Icons\aif_icon.png" />
+    <Resource Include="Resources\Icons\ai_icon.png" />
+    <Resource Include="Resources\Icons\amr_icon.png" />
+    <Resource Include="Resources\Icons\asf_icon.png" />
+    <Resource Include="Resources\Icons\asp_icon.png" />
+    <Resource Include="Resources\Icons\asx_icon.png" />
+    <Resource Include="Resources\Icons\avi_icon.png" />
+    <Resource Include="Resources\Icons\bat_icon.png" />
+    <Resource Include="Resources\Icons\bin_icon.png" />
+    <Resource Include="Resources\Icons\blank_icon.png" />
+    <Resource Include="Resources\Icons\blend_icon.png" />
+    <Resource Include="Resources\Icons\bmp_icon.png" />
+    <Resource Include="Resources\Icons\bup_icon.png" />
+    <Resource Include="Resources\Icons\cab_icon.png" />
+    <Resource Include="Resources\Icons\cad_icon.png" />
+    <Resource Include="Resources\Icons\cbr_icon.png" />
+    <Resource Include="Resources\Icons\cda_icon.png" />
+    <Resource Include="Resources\Icons\cdl_icon.png" />
+    <Resource Include="Resources\Icons\cdr_icon.png" />
+    <Resource Include="Resources\Icons\chm_icon.png" />
+    <Resource Include="Resources\Icons\com_icon.png" />
+    <Resource Include="Resources\Icons\Cpp_icon.png" />
+    <Resource Include="Resources\Icons\css_icon.png" />
+    <Resource Include="Resources\Icons\csv_icon.png" />
+    <Resource Include="Resources\Icons\cs_icon.png" />
+    <Resource Include="Resources\Icons\c_icon.png" />
+    <Resource Include="Resources\Icons\dat_icon.png" />
+    <Resource Include="Resources\Icons\divx_icon.png" />
+    <Resource Include="Resources\Icons\dll_icon.png" />
+    <Resource Include="Resources\Icons\dmg_icon.png" />
+    <Resource Include="Resources\Icons\docx_icon.png" />
+    <Resource Include="Resources\Icons\doc_icon.png" />
+    <Resource Include="Resources\Icons\Dss_icon.png" />
+    <Resource Include="Resources\Icons\Dvf_icon.png" />
+    <Resource Include="Resources\Icons\dwg_icon.png" />
+    <Resource Include="Resources\Icons\dxf_icon.png" />
+    <Resource Include="Resources\Icons\eml_icon.png" />
+    <Resource Include="Resources\Icons\eps_icon.png" />
+    <Resource Include="Resources\Icons\epub_icon.png" />
+    <Resource Include="Resources\Icons\exe_icon.png" />
+    <Resource Include="Resources\Icons\flac_icon.png" />
+    <Resource Include="Resources\Icons\fla_icon.png" />
+    <Resource Include="Resources\Icons\flv_icon.png" />
+    <Resource Include="Resources\Icons\gif_icon.png" />
+    <Resource Include="Resources\Icons\gp_icon.png" />
+    <Resource Include="Resources\Icons\gz_icon.png" />
+    <Resource Include="Resources\Icons\hqx_icon.png" />
+    <Resource Include="Resources\Icons\html_icon.png" />
+    <Resource Include="Resources\Icons\htm_icon.png" />
+    <Resource Include="Resources\Icons\h_icon.png" />
+    <Resource Include="Resources\Icons\ico_icon.png" />
+    <Resource Include="Resources\Icons\ifo_icon.png" />
+    <Resource Include="Resources\Icons\indd_icon.png" />
+    <Resource Include="Resources\Icons\ink_icon.png" />
+    <Resource Include="Resources\Icons\iso_icon.png" />
+    <Resource Include="Resources\Icons\jar_icon.png" />
+    <Resource Include="Resources\Icons\jpeg_icon.png" />
+    <Resource Include="Resources\Icons\jpg_icon.png" />
+    <Resource Include="Resources\Icons\js_icon.png" />
+    <Resource Include="Resources\Icons\key_icon.png" />
+    <Resource Include="Resources\Icons\lnk_icon.png" />
+    <Resource Include="Resources\Icons\log_icon.png" />
+    <Resource Include="Resources\Icons\m4b_icon.png" />
+    <Resource Include="Resources\Icons\m4p_icon.png" />
+    <Resource Include="Resources\Icons\m4v_icon.png" />
+    <Resource Include="Resources\Icons\mcd_icon.png" />
+    <Resource Include="Resources\Icons\mdb_icon.png" />
+    <Resource Include="Resources\Icons\mid_icon.png" />
+    <Resource Include="Resources\Icons\mkv_icon.png" />
+    <Resource Include="Resources\Icons\mov_icon.png" />
+    <Resource Include="Resources\Icons\mp2_icon.png" />
+    <Resource Include="Resources\Icons\mp3_icon.png" />
+    <Resource Include="Resources\Icons\mp4_icon.png" />
+    <Resource Include="Resources\Icons\mpeg_icon.png" />
+    <Resource Include="Resources\Icons\mpg_icon.png" />
+    <Resource Include="Resources\Icons\msi_icon.png" />
+    <Resource Include="Resources\Icons\net_icon.png" />
+    <Resource Include="Resources\Icons\odb_icon.png" />
+    <Resource Include="Resources\Icons\odc_icon.png" />
+    <Resource Include="Resources\Icons\odf_icon.png" />
+    <Resource Include="Resources\Icons\odg_icon.png" />
+    <Resource Include="Resources\Icons\odi_icon.png" />
+    <Resource Include="Resources\Icons\odm_icon.png" />
+    <Resource Include="Resources\Icons\ods_icon.png" />
+    <Resource Include="Resources\Icons\odt_icon.png" />
+    <Resource Include="Resources\Icons\ogg_icon.png" />
+    <Resource Include="Resources\Icons\otc_icon.png" />
+    <Resource Include="Resources\Icons\otf_icon.png" />
+    <Resource Include="Resources\Icons\otg_icon.png" />
+    <Resource Include="Resources\Icons\oth_icon.png" />
+    <Resource Include="Resources\Icons\oti_icon.png" />
+    <Resource Include="Resources\Icons\otp_icon.png" />
+    <Resource Include="Resources\Icons\ots_icon.png" />
+    <Resource Include="Resources\Icons\pcx_icon.png" />
+    <Resource Include="Resources\Icons\pdb_icon.png" />
+    <Resource Include="Resources\Icons\pdd_icon.png" />
+    <Resource Include="Resources\Icons\pdf_icon.png" />
+    <Resource Include="Resources\Icons\php_icon.png" />
+    <Resource Include="Resources\Icons\png_icon.png" />
+    <Resource Include="Resources\Icons\pps_icon.png" />
+    <Resource Include="Resources\Icons\pptx_icon.png" />
+    <Resource Include="Resources\Icons\ppt_icon.png" />
+    <Resource Include="Resources\Icons\psd_icon.png" />
+    <Resource Include="Resources\Icons\ps_icon.png" />
+    <Resource Include="Resources\Icons\ptb_icon.png" />
+    <Resource Include="Resources\Icons\pub_icon.png" />
+    <Resource Include="Resources\Icons\qbb_icon.png" />
+    <Resource Include="Resources\Icons\qbw_icon.png" />
+    <Resource Include="Resources\Icons\qxd_icon.png" />
+    <Resource Include="Resources\Icons\qxp_icon.png" />
+    <Resource Include="Resources\Icons\ram_icon.png" />
+    <Resource Include="Resources\Icons\rar_icon.png" />
+    <Resource Include="Resources\Icons\raw_icon.png" />
+    <Resource Include="Resources\Icons\resx_icon.png" />
+    <Resource Include="Resources\Icons\rmvb_icon.png" />
+    <Resource Include="Resources\Icons\rm_icon.png" />
+    <Resource Include="Resources\Icons\rtf_icon.png" />
+    <Resource Include="Resources\Icons\rw_icon.png" />
+    <Resource Include="Resources\Icons\sea_icon.png" />
+    <Resource Include="Resources\Icons\ses_icon.png" />
+    <Resource Include="Resources\Icons\sitx_icon.png" />
+    <Resource Include="Resources\Icons\sit_icon.png" />
+    <Resource Include="Resources\Icons\sln_icon.png" />
+    <Resource Include="Resources\Icons\sql_icon.png" />
+    <Resource Include="Resources\Icons\ss_icon.png" />
+    <Resource Include="Resources\Icons\svg_icon.png" />
+    <Resource Include="Resources\Icons\swf_icon.png" />
+    <Resource Include="Resources\Icons\tga_icon.png" />
+    <Resource Include="Resources\Icons\tgz_icon.png" />
+    <Resource Include="Resources\Icons\tiff_icon.png" />
+    <Resource Include="Resources\Icons\tif_icon.png" />
+    <Resource Include="Resources\Icons\trt_icon.png" />
+    <Resource Include="Resources\Icons\ttf_icon.png" />
+    <Resource Include="Resources\Icons\txt_icon.png" />
+    <Resource Include="Resources\Icons\vcd_icon.png" />
+    <Resource Include="Resources\Icons\vob_icon.png" />
+    <Resource Include="Resources\Icons\wav_icon.png" />
+    <Resource Include="Resources\Icons\webm_icon.png" />
+    <Resource Include="Resources\Icons\webp_icon.png" />
+    <Resource Include="Resources\Icons\wma_icon.png" />
+    <Resource Include="Resources\Icons\wmv_icon.png" />
+    <Resource Include="Resources\Icons\wpd_icon.png" />
+    <Resource Include="Resources\Icons\wps_icon.png" />
+    <Resource Include="Resources\Icons\xaml_icon.png" />
+    <Resource Include="Resources\Icons\xar_icon.png" />
+    <Resource Include="Resources\Icons\xcf_icon.png" />
+    <Resource Include="Resources\Icons\xhtml_icon.png" />
+    <Resource Include="Resources\Icons\xlsx_icon.png" />
+    <Resource Include="Resources\Icons\xls_icon.png" />
+    <Resource Include="Resources\Icons\xml_icon.png" />
+    <Resource Include="Resources\Icons\xtm_icon.png" />
+    <Resource Include="Resources\Icons\zip_icon.png" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Resources\Status\ok.png" />
+    <Resource Include="Resources\Status\error.png" />
+    <Resource Include="Resources\Status\syncing.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

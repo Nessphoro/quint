@@ -1,0 +1,96 @@
+﻿<Window x:Class="Quintessence.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Quint" Height="500" Width="800" Style="{StaticResource WindowStyle}" Name="Main" MinWidth="550" MinHeight="400"
+        xmlns:l="clr-namespace:Quintessence">
+    <Window.Resources>
+        <l:FileToSourceConverter x:Key="converter" />
+        <l:StatusToSourceConverter x:Key="StatusConverter" />
+        <Style TargetType="ToolTip" BasedOn="{StaticResource {x:Type ToolTip}}">
+            <Setter Property="Background" Value="#7096AD" />
+        </Style>
+    </Window.Resources>
+    <Grid Name="TheGrid" Margin="0,0,0,0">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+            <Grid Grid.Column="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="300"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Border BorderBrush="#FFEC4911" BorderThickness="0,1">
+                    <StackPanel Background="White" Grid.Row="0" Grid.ColumnSpan="2"  Orientation="Horizontal">
+                        <Image Source="/Resources/search.png" Panel.ZIndex="1"/>
+                        <TextBox BorderThickness="0,0,0,0" FontSize="14" Width="281"></TextBox>
+                    </StackPanel>
+                </Border>
+                <ListView Name="TheView" ItemsSource="{Binding Contacts}" Margin="0" Background="#00303E" Grid.Row="1" Grid.ColumnSpan="1" HorizontalContentAlignment="Stretch" BorderThickness="0,0,0,1">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <Border Background="{Binding RelativeSource={RelativeSource FindAncestor,AncestorType=ListViewItem}, Path=Background}">
+                                <StackPanel Orientation="Horizontal" Margin="0">
+                                    <Image Height="50" Width="50" Source="http://dummyimage.com/50x50/000/fff"/>
+                                    <TextBlock Text="{Binding Name}" FontSize="14" VerticalAlignment="Center" Margin="3,0,0,0" Foreground="#FFF9EF"></TextBlock>
+                                </StackPanel>
+                            </Border>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                    <ListView.ItemContainerStyle>
+                        <Style TargetType="ListViewItem">
+                            <Style.Triggers>
+                                <Trigger Property="IsSelected" Value="True">
+                                    <Trigger.Setters>
+                                        <Setter Property="Background" Value="#EC4911"/>
+                                    </Trigger.Setters>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </ListView.ItemContainerStyle>
+                </ListView>
+                <StackPanel Grid.Row="2" Orientation="Horizontal">
+                    <Button  Command="{Binding AddContact}" Background="#00303E" BorderBrush="#00303E">
+                        <Image Height="32" Width="32" Source="/Resources/plus_32.png"/>
+                    </Button>
+                    <Button  Command="{Binding AddGroup}" Background="#00303E" BorderBrush="#00303E">
+                        <Image Height="32" Width="32" Source="/Resources/group_add.png"/>
+                    </Button>
+                </StackPanel>
+            </Grid>
+        <Border Grid.Column="1" BorderBrush="#FFABADB3" BorderThickness="1,0,0,0"/>
+        <ListView Name="FileView" AllowDrop="True" Grid.Column="2" Grid.ColumnSpan="1" Background="{x:Null}" ItemsSource="{Binding SharedFiles}" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+            <ListView.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapPanel MaxWidth="{Binding Path=MaxWidth,ElementName=FileView}" IsItemsHost="True" />
+                </ItemsPanelTemplate>
+            </ListView.ItemsPanel>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel ToolTip="{Binding Name}" Width="100" Orientation="Vertical">
+                        <StackPanel.ContextMenu>
+                            <ContextMenu >
+                                <MenuItem Header="Delete"/>
+                                <MenuItem Header="Open In Explorer"/>
+                                <MenuItem Header="Sort by">
+                                    <MenuItem Header="Type"/>
+                                    <MenuItem Header="Name"/>
+                                    <MenuItem Header="Date Modified"/>
+                                </MenuItem>
+                            </ContextMenu>
+                        </StackPanel.ContextMenu>
+                        <Image MaxWidth="64" MaxHeight="64" Source="{Binding Path=Self,Converter={StaticResource converter}}"/>
+                        <Image Width="16" Height="16" Source="{Binding Path=Self,Converter={StaticResource StatusConverter}}" Margin="30,-30,0,0"/>
+                        <TextBlock Style="{StaticResource TBStyle}" TextTrimming="CharacterEllipsis" HorizontalAlignment="Center" MaxWidth="100" Text="{Binding Name}"/>
+                    </StackPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </Grid>
+</Window>

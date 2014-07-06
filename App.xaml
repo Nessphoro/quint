@@ -1,0 +1,13 @@
+﻿<Application x:Class="Quintessence.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             StartupUri="MainWindow.xaml">
+    <Application.Resources>
+        <Style x:Key="WindowStyle" TargetType="Window">
+            <Setter Property="Background" Value="#00303E"/>
+        </Style>
+        <Style x:Key="TBStyle" TargetType="TextBlock">
+            <Setter Property="Foreground" Value="#FFF9EF" />
+        </Style>
+    </Application.Resources>
+</Application>
