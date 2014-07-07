@@ -17,10 +17,10 @@ namespace Quintessence.Logic
     {
         Dictionary<long, ObservableCollection<SharedFile>> cache = new Dictionary<long, ObservableCollection<SharedFile>>();
         internal FilesystemWorker fs;
-        Window parent;
+        Window parentWindow;
         public ContactsModel(Window parent)
         {
-            this.parent = parent;
+            this.parentWindow = parent;
             fs = new FilesystemWorker("Pavlo Malynin");
             fs.OnFileChanged += fs_OnFileChanged;
             //TODO: Fetch Contacts
@@ -42,76 +42,78 @@ namespace Quintessence.Logic
         void fs_OnFileChanged(object sender, WorkerNotification e)
         {
             syncer.WaitOne();
-
-
-            string[] oldTokens = e.RelativePath.Split('\\');
-            string[] newTokens = e.NewRelativePath.Split('\\');
-            if (e.NewRelativePath == "")
+            syncer.Reset();
+            parentWindow.Dispatcher.BeginInvoke(new Action(() =>
             {
-                //Delete file
-            }
-            else if (e.RelativePath == "")
-            {
-                SharedFile sf = new SharedFile();
-                sf.Name = newTokens[newTokens.Length - 1];
-                sf.LocalLocation = e.LocalPath;
-                sf.IsFolder = e.IsDirectory;
-                if (newTokens.Length > 1)
+                string[] oldTokens = e.RelativePath.Split('\\');
+                string[] newTokens = e.NewRelativePath.Split('\\');
+                if (e.NewRelativePath == "")
                 {
-                    SharedFile initial;
-                    SharedFile parent = initial = cache[e.Contact.Id].FirstOrDefault(f => f.Name.Equals(newTokens[0]));
-                    if (parent == null)
+                    //Delete file
+                }
+                else if (e.RelativePath == "")
+                {
+                    SharedFile sf = new SharedFile();
+                    sf.Name = newTokens[newTokens.Length - 1];
+                    sf.LocalLocation = e.LocalPath;
+                    sf.IsFolder = e.IsDirectory;
+                    if (newTokens.Length > 1)
                     {
-                        parent = new SharedFile();
-                        parent.Name = newTokens[0];
-                        parent.IsFolder = true;
-                        cache[e.Contact.Id].Add(parent);
-                    }
-                    for (int i = 1; i < oldTokens.Length; i++)
-                    {
-                        parent = parent.Files.First(f => f.Name == oldTokens[i]);
+                        SharedFile initial;
+                        SharedFile parent = initial = cache[e.Contact.Id].FirstOrDefault(f => f.Name.Equals(newTokens[0]));
                         if (parent == null)
                         {
                             parent = new SharedFile();
                             parent.Name = newTokens[0];
                             parent.IsFolder = true;
-                            parent.Files.Add(parent);
+                            cache[e.Contact.Id].Add(parent);
                         }
+                        for (int i = 1; i < oldTokens.Length; i++)
+                        {
+                            parent = parent.Files.First(f => f.Name == oldTokens[i]);
+                            if (parent == null)
+                            {
+                                parent = new SharedFile();
+                                parent.Name = newTokens[0];
+                                parent.IsFolder = true;
+                                parent.Files.Add(parent);
+                            }
+                        }
+                        parent.Files.Add(sf);
+                        cache[e.Contact.Id].Remove(initial);
+                        cache[e.Contact.Id].Add(initial);
+                        NotifiyChange("SharedFiles");
                     }
-                    parent.Files.Add(sf);
+                    else
+                    {
+                        if (cache[e.Contact.Id].FirstOrDefault(f => f.Name == sf.Name) != default(SharedFile))
+                        {
+                            return;
+                        }
+                        cache[e.Contact.Id].Add(sf);
+                        NotifiyChange("SharedFiles");
+                    }
+                }
+                else if (e.RelativePath != e.NewRelativePath && !e.Desyncronized)
+                {
+                    SharedFile initial = cache[e.Contact.Id].First(f => f.Name == oldTokens[0]);
+                    for (int i = 1; i < oldTokens.Length; i++)
+                    {
+                        initial = initial.Files.First(f => f.Name == oldTokens[i]);
+                    }
+                    initial.Name = newTokens[newTokens.Length - 1];
+                    initial.LocalLocation = e.LocalPath;
                     cache[e.Contact.Id].Remove(initial);
                     cache[e.Contact.Id].Add(initial);
                     NotifiyChange("SharedFiles");
+                    //Rename
                 }
-                else
+                else if (e.Desyncronized)
                 {
-                    if (cache[e.Contact.Id].FirstOrDefault(f => f.Name == sf.Name) != default(SharedFile))
-                    {
-                        return;
-                    }
-                    cache[e.Contact.Id].Add(sf);
-                    NotifiyChange("SharedFiles");
+                    //File changed
                 }
-            }
-            else if (e.RelativePath != e.NewRelativePath && !e.Desyncronized)
-            {
-                SharedFile initial = cache[e.Contact.Id].First(f => f.Name == oldTokens[0]);
-                for (int i = 1; i < oldTokens.Length; i++)
-                {
-                    initial = initial.Files.First(f => f.Name == oldTokens[i]);
-                }
-                initial.Name = newTokens[newTokens.Length - 1];
-                initial.LocalLocation = e.LocalPath;
-                cache[e.Contact.Id].Remove(initial);
-                cache[e.Contact.Id].Add(initial);
-                NotifiyChange("SharedFiles");
-                //Rename
-            }
-            else if (e.Desyncronized)
-            {
-                //File changed
-            }
-
+            }));
+            syncer.Set();
         }
 
         ObservableCollection<Contact> _contacts;
