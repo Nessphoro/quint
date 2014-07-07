@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-D:\Users\pavlo\Documents\Visual Studio 2013\Projects\Quintessence\Quintessence\obj\Debug\
+D:\Users\pavlo\documents\visual studio 2013\Projects\Quintessence\Quintessence\obj\Debug\
 Quintessence
 none
 false
 DEBUG;TRACE
-D:\Users\pavlo\Documents\Visual Studio 2013\Projects\Quintessence\Quintessence\App.xaml
-21731830987
+D:\Users\pavlo\documents\visual studio 2013\Projects\Quintessence\Quintessence\App.xaml
+3-1137300551
 
-111060832756
+15-1106607280
 12-1401562060
-AddContact.xaml;MainWindow.xaml;
+AddContact.xaml;ErrorDialog.xaml;MainWindow.xaml;
 
-False
+True
 

@@ -56,11 +56,19 @@
     <Compile Include="AddContact.xaml.cs">
       <DependentUpon>AddContact.xaml</DependentUpon>
     </Compile>
+    <Compile Include="BindingProxy.cs" />
     <Compile Include="Converters.cs" />
+    <Compile Include="ErrorDialog.xaml.cs">
+      <DependentUpon>ErrorDialog.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Logic\AddContactsModel.cs" />
     <Compile Include="Logic\ContactsModel.cs" />
     <Compile Include="Logic\Contact.cs" />
     <Page Include="AddContact.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ErrorDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -72,6 +80,9 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Logic\FilesystemWorker.cs" />
+    <Compile Include="Logic\MergedCollection.cs" />
+    <Compile Include="Logic\PathElement.cs" />
     <Compile Include="Logic\SharedFile.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
@@ -278,11 +289,19 @@
     <Resource Include="Resources\Icons\xtm_icon.png" />
     <Resource Include="Resources\Icons\zip_icon.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Resources\Buttons\back.png" />
+  </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Status\ok.png" />
     <Resource Include="Resources\Status\error.png" />
     <Resource Include="Resources\Status\syncing.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Buttons\forward.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Buttons\triangle_right.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

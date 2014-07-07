@@ -16,3 +16,5 @@ D:\Users\pavlo\documents\visual studio 2013\Projects\Quintessence\Quintessence\o
 D:\Users\pavlo\documents\visual studio 2013\Projects\Quintessence\Quintessence\obj\Debug\App.baml
 D:\Users\pavlo\documents\visual studio 2013\Projects\Quintessence\Quintessence\obj\Debug\GeneratedInternalTypeHelper.g.cs
 D:\Users\pavlo\documents\visual studio 2013\Projects\Quintessence\Quintessence\obj\Debug\Quintessence_MarkupCompile.lref
+D:\Users\pavlo\documents\visual studio 2013\Projects\Quintessence\Quintessence\obj\Debug\ErrorDialog.baml
+D:\Users\pavlo\documents\visual studio 2013\Projects\Quintessence\Quintessence\obj\Debug\ErrorDialog.g.cs

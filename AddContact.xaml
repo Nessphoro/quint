@@ -14,9 +14,9 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="10"/>
         </Grid.RowDefinitions>
-        <StackPanel Grid.Column="1" Grid.Row="1" Orientation="Horizontal" VerticalAlignment="Center" >
-            <TextBlock  FontSize="14">Email:</TextBlock>
-            <TextBox  Text="{Binding Email, UpdateSourceTrigger=PropertyChanged}" Margin="10,0,0,0" Width="279" Background="#FF7096AD" BorderBrush="{x:Null}" />
+        <StackPanel Grid.Column="1" Grid.Row="1" Orientation="Vertical" VerticalAlignment="Center" >
+            <TextBlock Style="{StaticResource TBStyle}" FontSize="14" HorizontalAlignment="Center">Search for people using their email or username</TextBlock>
+            <TextBox  Text="{Binding Email, UpdateSourceTrigger=PropertyChanged}" Background="#FF7096AD" BorderBrush="{x:Null}" />
 
         </StackPanel>
         <StackPanel Grid.Column="1" Grid.Row="2" Orientation="Horizontal">

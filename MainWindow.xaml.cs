@@ -24,7 +24,7 @@ namespace Quintessence
     {
         public MainWindow()
         {
-            this.DataContext = new Logic.ContactsModel();
+            this.DataContext = new Logic.ContactsModel(this);
             InitializeComponent();
         }
 
@@ -34,6 +34,13 @@ namespace Quintessence
             TheView.SelectionChanged += TheView_SelectionChanged;
             base.OnInitialized(e);
         }
+
+        void PathView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            (DataContext as Logic.ContactsModel).SelectPath.Execute(PathView.SelectedItem);
+            PathView.SelectedIndex = -1;
+        }
+
 
         void TheView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -49,6 +56,21 @@ namespace Quintessence
                 (DataContext as Logic.ContactsModel).DropFile.Execute(files);
                
             }
+        }
+
+        private void Border_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            SearchBox.Focus();
+        }
+
+        private void FileView_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+          if(e.OriginalSource.GetType() == typeof(Border) || 
+              e.OriginalSource.GetType()==typeof(Image)||
+              e.OriginalSource.GetType()==typeof(TextBlock))
+          {
+              (DataContext as Logic.ContactsModel).FileDoubleClick.Execute(FileView.SelectedItem);
+          }
         }
 
     }

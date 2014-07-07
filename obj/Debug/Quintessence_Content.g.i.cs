@@ -8,8 +8,6 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("resources/status/1404632931_apply.png")]
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("resources/status/1404632945_delete.png")]
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("resources/status/1404632950_sync.png")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("resources/buttons/1404654303_icon-ios7-arrow-right.png")]
 
 

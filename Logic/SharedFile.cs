@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
+using System.Windows.Input;
 
 namespace Quintessence.Logic
 {
@@ -12,6 +13,13 @@ namespace Quintessence.Logic
     }
     class SharedFile
     {
+
+        public SharedFile()
+        {
+            Files = new ObservableCollection<SharedFile>();
+            State = SharedFileState.Syncing;
+        }
+
         public string Name
         {
             get;

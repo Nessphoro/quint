@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 
 namespace Quintessence.Logic
@@ -32,7 +33,7 @@ namespace Quintessence.Logic
         {
             get
             {
-                return new CloseCommand(caller);
+                return new CloseCommand(caller.Window);
             }
         }
 
@@ -59,9 +60,9 @@ namespace Quintessence.Logic
 
     class CloseCommand : ICommand
     {
-        ContactsModel model;
+        Window model;
 
-        public CloseCommand(ContactsModel model)
+        public CloseCommand(Window model)
         {
             this.model = model;
         }
@@ -75,8 +76,7 @@ namespace Quintessence.Logic
 
         public void Execute(object parameter)
         {
-
-            model.Window.Close();
+            model.Close();
         }
     }
     class AddContactFinalCommand : ICommand
@@ -96,7 +96,7 @@ namespace Quintessence.Logic
 
         public void Execute(object parameter)
         {
-            model.caller.Contacts.Add(new Contact() { Name = model.Email });
+            model.caller.AddContactExecute(new Contact() { Name = model.Email });
             model.caller.Window.Close();
         }
     }
